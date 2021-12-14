@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Code/Android2021/TopAnimeList/app/src/main/res/layout/activity_main.xml" value="0.1921875" />
+        <entry key="..\:/Code/Android2021/TopAnimeList/app/src/main/res/layout/fragment_detail.xml" value="0.178125" />
         <entry key="..\:/Code/Android2021/TopAnimeList/app/src/main/res/layout/fragment_overview.xml" value="0.178125" />
         <entry key="..\:/Code/Android2021/TopAnimeList/app/src/main/res/layout/grid_view_item.xml" value="0.1921875" />
       </map>
