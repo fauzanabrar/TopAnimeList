@@ -9,19 +9,154 @@
             type="com.learn.topanimelist.viewmodels.DetailViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".DetailFragment">
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello detail"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/anime_thumbnail"
+                android:layout_width="0dp"
+                android:layout_height="266dp"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{viewModel.selectedAnime.imgUrl}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+            <TextView
+                android:id="@+id/rank"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.displayRank}"
+                android:textSize="20sp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/anime_thumbnail"
+                tools:text="Rank #1"
+                android:textColor="@color/text_black"
+                />
+
+            <ImageView
+                android:id="@+id/star"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintEnd_toStartOf="@id/rating_anime"
+                app:layout_constraintTop_toBottomOf="@+id/anime_thumbnail"
+                app:srcCompat="@drawable/ic_star_rating" />
+
+            <TextView
+                android:id="@+id/rating_anime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:padding="4dp"
+                android:text="@{viewModel.selectedAnime.score}"
+                android:textAlignment="viewStart"
+                android:textAllCaps="false"
+                android:textColor="@color/text_black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/anime_thumbnail"
+                tools:text="9.9" />
+
+            <TextView
+                android:id="@+id/anime_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#de000000"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:text="@{viewModel.selectedAnime.title}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rank"
+                tools:text="Anime Title" />
+
+            <TextView
+                android:id="@+id/type_anime_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:textColor="@color/text_black"
+                android:textSize="16sp"
+                android:text="Type                :"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/anime_title"
+                />
+
+            <TextView
+                android:id="@+id/type_anime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/text_black"
+                android:text="@{viewModel.selectedAnime.type}"
+                app:layout_constraintStart_toEndOf="@id/type_anime_text"
+                app:layout_constraintTop_toTopOf="@id/type_anime_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Anime"
+                />
+
+            <TextView
+                android:id="@+id/date_anime_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="#de000000"
+                android:textSize="16sp"
+                android:text="Date release   :"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/type_anime_text"
+                />
+
+            <TextView
+                android:id="@+id/date_anime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:textSize="16sp"
+                android:textColor="@color/text_black"
+                android:text="@{viewModel.selectedAnime.date}"
+                app:layout_constraintStart_toEndOf="@id/date_anime_text"
+                app:layout_constraintTop_toTopOf="@id/date_anime_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Aug 1945"
+                />
+
+            <Button
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share"
+                android:padding="4dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="24dp"
+                android:drawableLeft="@drawable/ic_share"
+                android:drawablePadding="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date_anime_text"
+                android:background="@color/design_default_color_primary"
+                android:textSize="16sp"
+                android:onClick="@{() -> viewModel.onShareClicked()}"
+                android:textColor="#FFFFFF"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>

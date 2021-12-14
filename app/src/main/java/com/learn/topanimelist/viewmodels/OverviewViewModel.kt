@@ -40,7 +40,7 @@ class OverviewViewModel: ViewModel() {
             try {
                 _animeList.value = AnimeAPI.retrofitService.getProperties().asModel()
                 _status.value = AnimeAPIStatus.DONE
-            } catch (e: NetworkErrorException) {
+            } catch (e: Exception) {
                 _status.value = AnimeAPIStatus.ERROR
                 _animeList.value = ArrayList()
             }

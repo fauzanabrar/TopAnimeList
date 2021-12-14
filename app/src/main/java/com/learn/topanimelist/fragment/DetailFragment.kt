@@ -26,7 +26,22 @@ class DetailFragment : Fragment() {
             this, viewModelFactory).get(DetailViewModel::class.java)
         binding.viewModel = viewModel
 
+        setHasOptionsMenu(true)
+
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.share_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // share
+        when(item.itemId){
+            R.id.share_menu_item -> viewModel.onShareClicked()
+        }
+        return true
     }
 
 }
